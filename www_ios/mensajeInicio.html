@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="es" ng-app="incluapp">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>50 años de historia trabajando por la paz</title>
+
+    <link rel="stylesheet" href="style.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="css/ale.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+
+    <link href='http://fonts.googleapis.com/css?family=Cabin' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300'
+        rel='stylesheet' type='text/css'>
+    <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="js/jquery.magnific-popup.min.js"></script>
+    <script type="text/javascript" src="js/transit.js"></script>
+    <script type="text/javascript" src="js/custom.js"></script>
+    <!-- GALLERY START -->
+    <script type="text/javascript" src="lib/klass.min.js"></script>
+    <script type="text/javascript" src="lib/code.photoswipe-3.0.5.min.js"></script>
+    <script type="text/javascript" src="js/gallery.js"></script>
+    <!-- NAVIGATION START -->
+    <script src="js/navigation/modernizr.custom.js"></script>
+    <!-- COUNTDOWN START -->
+    <script type="text/javascript" src="js/jquery.countdown.js"></script>
+    <!-- JQUERY PLUGINS -->
+    <script type="text/javascript" src="js/jquery.mixitup.min.js"></script>
+    <script type="text/javascript" src="js/jquery.easing.min.js"></script>
+    <!-- SLIDER START -->
+    <script src="js/responsiveslides.min.js"></script>
+    <script type="text/javascript">        $(function () { $(".rslides").responsiveSlides(); }); </script>
+    <!-- ANGULAR -->
+    <script src="js/libs/angular.min.js"></script>
+    <script src="js/libs/angular-route.min.js"></script>
+    <script src="js/libs/angular-sanitize.min.js"></script>
+
+    <script src="js/app.js"></script>
+    <script src="js/app_main.js"></script>
+    <script src="js/inicio.js"></script>
+
+</head>
+<body>
+    <div id="st-container" class="st-container">
+        <div class="st-pusher">
+            <div class="st-content">
+                <div class="st-content-inner">
+                    <div id="page-content">
+                        <div id="page-inside">
+                            <div id="header-content">
+                                <div id="header-content-left" class="clearfix">
+                                </div>
+                                <div id="header-content-mid" class="clearfix">
+                                    <div class="logo">
+                                    <img src="img/logo_pies_txt_oscuro.png">
+                                    </div>
+                                </div>
+                                 <div id="header-info">
+                                    <h2>50 Años en la búsqueda de la paz en Colombia</h2>
+                                </div>
+                            </div>
+                            <div class="timeline">
+                                <a href="javascript: abrirVideo()">
+                                    <img id="img-linea" src="" alt="Imagen previa de video LA PAZ EN COLOMBIA. Seleccione esta imagen para ver video en youtube.">
+                                </a>
+                                <span id="txtGrupoPaz">
+                                Conoce sobre los 20 años de trabajo por la Paz y la Reconciliación en Colombia desde el grupo 
+                                <a href="javascript:openLinkInBrowser('http://www.dps.gov.co/contenido/contenido.aspx?catID=424&conID=1217')">Paz Desarrollo y Estabilización
+                                </a> de la Dirección de Programas Especiales del Departamento Para la Prosperidad Social -DPS- </span>
+                                <a href="#" onclick="VistoHistoriaGuardar();" id="btn-historia"><div class="place_order">Continuar</div></a> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clr">
+            </div>
+            <div ng-include="'templates/__footer.html'">
+            </div>
+        </div>
+        <script src="js/navigation/classie.js"></script>
+        <script src="js/navigation/sidebarEffects.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+               var thumbVideo = thumbnail_youtube('https://www.youtube.com/watch?v=yTIu7LCiI0U');
+               document.getElementById("img-linea").src = thumbVideo;
+
+
+                $('.popup-youtube').magnificPopup({
+                    disableOn: 700,
+                    type: 'iframe',
+                    mainClass: 'mfp-fade',
+                    removalDelay: 160,
+                    preloader: false,
+
+                    fixedContentPos: false
+                });
+
+                console.log("magnific")
+            });
+
+            function abrirVideo(){
+                $.magnificPopup.open({
+                  items: {
+                    src: 'https://www.youtube.com/watch?v=yTIu7LCiI0U'
+                  },
+                  type: 'iframe'
+                }, 0);
+            }
+        </script>
+</body>
+</html>

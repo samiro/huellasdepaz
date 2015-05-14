@@ -1,0 +1,11 @@
+
+navigator.notification.alert("Debes escribir un comentario",
+    function(){
+        $("#comment").focus()
+    }, "Enviar comentario", "Aceptar")
+
+navigator.notification.alert("Gracias por tu comentario",
+    null, "Gracias", "Aceptar")
+
+navigator.notification.alert("Ha ocurrido un error",
+    null, "Ocurrió algo inesperado. Por favor intenta más tarde.", "Aceptar");

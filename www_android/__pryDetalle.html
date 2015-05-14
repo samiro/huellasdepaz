@@ -1,0 +1,202 @@
+﻿<!doctype html>
+<html lang="es" ng-app="incluapp">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Proyecto - Detalle</title>
+    <link rel="stylesheet" href="style.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="css/ale.css" type="text/css" media="screen">
+    <link href='http://fonts.googleapis.com/css?family=Cabin' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300'
+        rel='stylesheet' type='text/css'>
+    
+    <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="js/transit.js"></script>
+    <script type="text/javascript" src="js/custom.js"></script>
+    
+    <!-- GALLERY START -->
+    <script type="text/javascript" src="lib/klass.min.js"></script>
+    <script type="text/javascript" src="lib/code.photoswipe-3.0.5.min.js"></script>
+    <script type="text/javascript" src="js/gallery.js"></script>
+
+    <!-- NAVIGATION START -->
+    <script src="js/navigation/modernizr.custom.js"></script>
+
+    <!-- COUNTDOWN START -->
+    <script type="text/javascript" src="js/jquery.countdown.js"></script>
+
+    <!-- JQUERY PLUGINS -->
+    <script type="text/javascript" src="js/jquery.mixitup.min.js"></script>
+    <script type="text/javascript" src="js/jquery.easing.min.js"></script>
+
+    <!-- SLIDER START -->
+    <script src="js/responsiveslides.min.js"></script>
+    <script type="text/javascript">        $(function () { $(".rslides").responsiveSlides(); }); </script>
+
+    <!-- ANGULAR -->
+    <script src="js/libs/angular.min.js"></script>
+    <script src="js/libs/angular-route.min.js"></script>
+    <script src="js/libs/angular-sanitize.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/app_main.js"></script>
+    <script src="cordova.js"></script>
+
+</head>
+<body ng-controller="ProyectoDetalleCtrl">
+<div ng-include="'templates/__nointernet.html'"></div>
+
+    <div id="st-container" class="st-container">
+        <nav class="st-menu st-effect-9" id="menu-9">
+            <div class="logo">
+            <img src="img/logo_pies_txt_oscuro.png" title="Huellas de Paz logo">
+            </div>
+            <div ng-include="'templates/__navegacion.html'">
+            </div>
+        </nav>
+        <div class="st-pusher">
+            <div class="st-content">
+                <div class="st-content-inner">
+                    <div id="page-content">
+                        <div id="page-inside">
+                            <div id="header-content" class="divEncabezado">
+                                <div class="divOpacoEncab">
+                                </div>
+                                <div class="imgPry imgEncabezado">
+                                    <img ng-hide="proyecto.Imagen.trim()==''" ng-src="{{proyecto.Imagen}}" alt="{{proyecto.Titulo}}" />
+                                    <img ng-show="proyecto.Imagen.trim()==''" src="img/nodisponible.jpg" alt="{{proyecto.Titulo}}" />
+                                </div>
+                                <div id="header-content-left" class="clearfix">
+                                    <div id="navigation_content">
+                                        <div id="st-trigger-effects" class="column">
+                                            <button data-effect="st-effect-9" id="i-nav" title="Menú">
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="heart" ng-click="shareTwitter(proyecto)"  title="Compartir en Twitter">
+                                        <div class="heart-content">
+                                            <img src="img/heart.png">
+                                            <span>{{proyecto.Likes}}</span>
+                                        </div>
+                                    </div>
+                                <h1 class="h1Encabezado">
+                                    {{proyecto.Titulo}}
+                                </h1>
+
+                            </div>
+                            <div class="blog-post">
+                                <p>
+                                    {{proyecto.Descripcion}}
+                                </p>
+                                <div class="divInfoGeneral">
+                                    <strong>Región: </strong>{{proyecto.Region}}<br />
+                                    <strong>Temática: </strong>
+                                    <ul>
+                                        <li ng-repeat="tematica in proyecto.Tematica">
+                                            {{tematica.Descripcion}}
+                                        </li>
+                                    </ul>
+                                    <strong>Nuestros logros:</strong>
+                                    <ul>
+                                        <li ng-repeat="logro in proyecto.Logros">
+                                            {{logro.MyLogro}}
+                                        </li>
+                                    </ul>
+                                    <div>
+                                        <strong>Entidad ejecutora: </strong>
+                                        <ul class="ulContacto">
+                                            <li>{{proyecto.EntidadEjecutora}}</li>
+                                        </ul>
+                                    </div>
+                                    <strong>Población impactada: </strong>
+                                    <ul>
+                                        <li ng-repeat="pob in proyecto.Poblaciones">
+                                            {{pob.MyPoblacion}}
+                                        </li>
+                                    </ul>
+                                    <div ng-show="proyecto.Contacto.length > 0">
+                                        <strong>Contacto: </strong>
+                                        <ul class="ulContacto">
+                                            <li>{{proyecto.Contacto[0].Nombre}}</li>
+                                            <li>{{proyecto.Contacto[0].URL}}</li>
+                                            <li>{{proyecto.Contacto[0].Email}}</li>
+                                            <li>{{proyecto.Contacto[0].Direccion}}</li>
+                                            <li>{{proyecto.Contacto[0].Telefono}}</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div ng-show="mostrar_estadistica">
+                                        <p class="align-center" ng-show="loading">
+                                            Cargando ...
+                                        </p>
+                                        <div ng-show="estadistica!=null" class="statistic-graphic">
+                                            <div class="title">{{estadistica.Nombre}}</div>
+                                            <div class="value" ng-repeat="valor in estadistica.Valores">
+                                                <div class="value-title">{{valor.NombreIndicador}}</div>
+                                                <div class="value-progress">
+                                                    <div class="value-prog-content">
+                                                        <div style="width: {{porcentaje(valor.ValorIndicador)}}%;" class="value-prog-current"></div>    
+                                                        <span>{{valor.ValorIndicador}}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="posted-comment divAportar">
+                                        <a ng-show="proyecto.Contacto.length > 0" class="bntAportar" href="mailto: {{proyecto.Contacto[0].Email}}">Quiero aportar</a>
+                                        <a ng-click="toggleEstadistica()" class="bntAportar btnStatistic" title="Ver estadísticas"></a>
+                                    </div>
+
+                                </div>
+                                <div class="blog-post-information">
+                                    <h1>
+                                        Comentarios
+                                    </h1>
+                                    <div class="comment clearfix" ng-repeat="comentario in proyecto.Comentario">
+                                        <div class="quote">
+                                            <div class="i-pos">
+                                                <i>
+                                                    <div class="qttp">
+                                                    </div>
+                                                    {{comentario.MyComentario}}
+                                                    <div class="qbtp">
+                                                    </div>
+                                                </i>
+                                            </div>
+                                        </div>
+                                        <p class="pForo">
+                                            {{comentario.Usuario}}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="posted-comment divAportar">
+                                    <div ng-hide="showFormComentarios" class="bntAportar" ng-click="toggleFormComentarios()" href="javascript:void(0)">Escribir comentario</div>
+                                    <div ng-show="showFormComentarios" class="form-comment">
+                                        <div class="contactform" method="post">
+                                            <label for="name">Nombre:</label>
+                                            <div>
+                                                <input ng-model="comment_name" type="text" id="name" name="name" value="{{comment_name}}">
+                                            </div>
+                                            <label for="comment">Comentario:</label>
+                                            <div>
+                                                <textarea ng-model="comment_message" id="comment" name="comment" rows="5" cols="20">{{comment_name}}</textarea>
+                                            </div>
+                                            <Button class="submitButton bntAportar" ng-click="enviarComentario()">Comentar</Button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clr">
+            </div>
+            <div ng-include="'templates/__footer.html'">
+            </div>
+        </div>
+        <script src="js/navigation/classie.js"></script>
+        <script src="js/navigation/sidebarEffects.js"></script>
+</body>
+</html>

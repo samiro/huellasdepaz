@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="es" ng-app="incluapp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Proyectos por departamento - Mapa</title>
+    <link rel="stylesheet" href="style.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="css/ale.css" type="text/css" media="screen">
+    <link href='http://fonts.googleapis.com/css?family=Cabin' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
+    
+    <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="js/transit.js"></script>
+    <script type="text/javascript" src="js/custom.js"></script>
+            
+    <!-- GALLERY START -->
+    <script type="text/javascript" src="lib/klass.min.js"></script>
+    <script type="text/javascript" src="lib/code.photoswipe-3.0.5.min.js"></script>
+    <script type="text/javascript" src="js/gallery.js"></script>
+   
+     <!-- NAVIGATION START --> 
+    <script src="js/navigation/modernizr.custom.js"></script>
+
+    <!-- JQUERY PLUGINS -->
+    <script type="text/javascript" src="js/jquery.mixitup.min.js"></script>
+    <script type="text/javascript" src="js/jquery.easing.min.js"></script>  
+
+    <!-- SLIDER START -->
+    <script src="js/responsiveslides.min.js"></script>
+    <script type="text/javascript"> $(function() { $(".rslides").responsiveSlides(); }); </script>
+
+    <!-- ANGULAR -->
+    <script src="js/libs/angular.min.js"></script>
+    <script src="js/libs/angular-route.min.js"></script>
+    <script src="js/libs/angular-sanitize.min.js"></script>
+
+    <script src="js/app.js"></script>
+    <script src="js/app_main.js"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.9&sensor=false"></script>
+    <script src="cordova.js"></script>
+    <style>
+        body, html{
+            height: 100%;
+        }
+        #page-content, .st-content-inner{
+            height: 100%;
+        }
+    </style>
+
+</head>
+<body> 
+<div ng-include="'templates/__nointernet.html'"></div>
+    <div id="cargando">
+        <div id="cargandostatus">
+            <p class="center-text">
+                 Espere un momento por favor... <em id="cargando-texto">consultando proyectos por departamento</em>
+            </p>
+        </div>
+    </div>
+
+    <div id="st-container" class="st-container">
+        <nav class="st-menu st-effect-9" id="menu-9">
+            <div class="logo"><img src="img/logo_pies_txt_oscuro.png" title="Huellas de Paz logo"></div>
+            <div ng-include="'templates/__navegacion.html'"></div>
+        </nav>          
+    
+        <div class="st-pusher">
+            <div class="st-content">
+                <div class="st-content-inner">
+                    <div id="page-content">
+                        <div id="page-inside">  
+                            <div id="header-content">
+                                <div id="header-content-left" class="clearfix"> <div id="navigation_content"> <div id="st-trigger-effects" class="column"> <button data-effect="st-effect-9" id="i-nav" title="Menú"></button> </div> </div> </div>
+                                <div id="header-content-mid" class="clearfix"> <div class="logo"><img src="img/logo_pies_txt_oscuro.png"></div> </div>
+                                <div id="header-content-right" class="clearfix"> <a href="__proyectos.html"> <div id="i-logreg"></div> </a> </div>
+                                <div id="header-info"> <h2> Conoce los proyectos de tu región </h2> </div>
+                            </div>
+
+                            <div id="mapa"></div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="clr"></div>
+
+        <div ng-include="'templates/__footer.html'"></div>
+
+    </div>
+    <script src="js/navigation/classie.js"></script>
+    <script src="js/navigation/sidebarEffects.js"></script>
+    <script>
+        app.initialize();
+
+        var map;
+        var infoWindow = new google.maps.InfoWindow();
+        var bound = new google.maps.LatLngBounds();
+        var markers = []
+
+        function initialize() {
+          var mapOptions = {
+            zoom: 5,
+            center: new google.maps.LatLng(4.598291, -74.076119),
+            streetViewControl: false,
+            mapTypeControl: false,
+            mapTypeId: google.maps.MapTypeId.ROAD_MAP
+          };
+          map = new google.maps.Map(document.getElementById('mapa'),
+              mapOptions);
+
+            loadMarkers();
+            //createMarker({latitud: 5.304374, longitud: -75.461688, nombre: 'Caldas', icon: 'img/pinRojo.png'})
+            //createMarker({latitud: 10.394853, longitud: -75.507018, nombre: 'Bolivar', icon: 'img/pinRojo.png'})
+            //createMarker({latitud: 4.438880, longitud: -75.236107, nombre: 'Tolima', icon: 'img/pinRojo.png'})
+            //createMarker({latitud: 4.599426, longitud: -74.076116, nombre: 'Cundinamarca', icon: 'img/pinAzul.png'})
+            //createMarker({latitud: 6.989294, longitud: -73.561955, nombre: 'Santander', icon: 'img/pinAzul.png'})
+        }
+
+        google.maps.event.addDomListener(window, 'load', initialize);
+
+
+        var createMarker = function (info){
+            
+            info.latitud = (info.latitud);
+            info.longitud = (info.longitud);
+
+            var point = new google.maps.LatLng(info.latitud , info.longitud)
+            var marker = new google.maps.Marker({
+                map: map,
+                position: point,
+                title: info.nombre,
+                icon: info.icon
+            });
+
+            if(info.cantidad > 0){
+                marker.content = '<div class="infoWindowContent">' + info.cantidad + ' Proyectos<div class="infoWindowButton"><a class="button button-green btnLlegar" href="javascript:mostrarProyectos(\''+info.depto.Codigo+'\', \''+info.depto.Nombre+'\')">Ver proyectos</a></div>';
+            }else{
+                marker.content = '<div class="infoWindowContent">' + info.nombre + '<div class="infoWindowButton">No hay proyectos en ésta región</div>';
+            }
+
+            google.maps.event.addListener(marker, 'click', function(){
+                infoWindow.setContent('<h2 class="h2Mapa">' + marker.title + '</h2>' + marker.content);
+                infoWindow.open(map, marker);
+                window.info_punto_clickeado = info
+            });
+                    
+            bound.extend(point);
+            markers.push(marker);
+        }
+
+
+        function loadMarkers(){
+            mostrarCargando();
+            $.ajax({
+                url: "http://200.119.110.231/Modulos/Departamento.svc/ConsultarDepartamentos",
+                type: 'GET',
+                crossDomain: true,
+                dataType: 'jsonp',
+                success: function(data) { 
+                    for (var i = 0; i < data.length; i++) {
+                        var depto = data[i]
+                        if(depto.Proyectos > 0){
+                            createMarker({
+                                latitud: depto.Latitud, 
+                                longitud: depto.Longitud, 
+                                nombre: depto.Nombre, 
+                                cantidad: depto.Proyectos,
+                                depto: depto,
+                                icon: 'img/pinAzul.png'})
+                        }
+                    };
+                    ocultarCargando();
+                },
+                error: function() { console.log("Fallo consultando los departamentos"); ocultarCargando(); }
+            });
+        }
+
+        function mostrarProyectos(Codigo, Nombre){
+            window.location.href = "__proyectos.html?depto=" + Codigo + "&deptoName=" + Nombre;
+        }
+       
+    </script> 
+
+</body>
+</html>

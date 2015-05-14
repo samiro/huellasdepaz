@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="es" ng-app="incluapp">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Acerca de</title>
+    <link rel="stylesheet" href="style.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="css/ale.css" type="text/css" media="screen">
+    <link href='http://fonts.googleapis.com/css?family=Cabin' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300'
+        rel='stylesheet' type='text/css'>
+    
+    <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="js/transit.js"></script>
+    <script type="text/javascript" src="js/custom.js"></script>
+    <!-- GALLERY START -->
+    <script type="text/javascript" src="lib/klass.min.js"></script>
+    <script type="text/javascript" src="lib/code.photoswipe-3.0.5.min.js"></script>
+    <script type="text/javascript" src="js/gallery.js"></script>
+    <!-- NAVIGATION START -->
+    <script src="js/navigation/modernizr.custom.js"></script>
+    <!-- COUNTDOWN START -->
+    <script type="text/javascript" src="js/jquery.countdown.js"></script>
+    <!-- JQUERY PLUGINS -->
+    <script type="text/javascript" src="js/jquery.mixitup.min.js"></script>
+    <script type="text/javascript" src="js/jquery.easing.min.js"></script>
+    <!-- SLIDER START -->
+    <script src="js/responsiveslides.min.js"></script>
+    <script type="text/javascript">        $(function () { $(".rslides").responsiveSlides(); }); </script>
+    <!-- ANGULAR -->
+    <script src="js/libs/angular.min.js"></script>
+    <script src="js/libs/angular-route.min.js"></script>
+    <script src="js/libs/angular-sanitize.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/app_main.js"></script>
+    <script src="cordova.js"></script>
+</head>
+<body> 
+<div ng-include="'templates/__nointernet.html'"></div>
+
+    <div id="st-container" class="st-container">
+        <nav class="st-menu st-effect-9" id="menu-9">
+            <div class="logo"><img src="img/logo_pies_txt_oscuro.png" title="Huellas de Paz logo"></div>
+            <div ng-include="'templates/__navegacion.html'"></div>
+        </nav>
+        <div class="st-pusher">
+            <div class="st-content">
+                <div class="st-content-inner">
+                    <div id="page-content">
+                        <div id="page-inside" class="no-bottom">  
+                            <div id="header-content">
+    	                       <div id="header-content-left" class="clearfix">
+                                    <div id="navigation_content">
+                                        <div id="st-trigger-effects" class="column"> 
+                                            <button data-effect="st-effect-9" id="i-nav" title="Menú"></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="header-content-mid" class="clearfix">
+                                    <div class="logo">
+                                    <img src="img/logo_pies_txt_oscuro.png" title="Huellas de Paz logo">
+                                    </div>
+                                </div> 
+                                <div id="header-info"> 
+                                    <h2> ACERCA DE </h2>
+                                </div>
+                            </div>
+                            <div class="block clearfix">
+                                <div>
+                                    <h4 class="bottom-space"> Desarrollado por </h4>
+                                    <label class="txt-desarrollo">Alexandra Espinosa Mejia</label>
+                                    <label class="txt-desarrollo">Cristian Samir Jimenez</label>
+                                </div>
+                                <div class="txt-desarrollo">
+                                    <h4 class="bottom-space"> Con el apoyo de </h4>
+                                	<img src="img/logo-dps-mintic-presidencia.jpg" class="logos-apoyo">
+                                    <div class="bottom-space"></div>
+                                    <p class="txt-desarrollo">
+                                        Tenga en cuenta que para el funcionamiento de esta aplicación se requiere acceso a internet.</p>
+                            	</div>
+                            </div>
+                            <div class="clr"></div>
+                            <div class="block clearfix">
+                                <div>
+                                    <h6 class="bottom-space"> Ver video </h6>
+                                    <label class="txt-desarrollo">
+                                        <a href="__historia.html">50 AÑOS TRABAJANDO POR LA PAZ Y LA RECONCILIACIÓN EN COLOMBIA</a>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clr"></div>
+
+            <div id="foo" class="clearfix">
+                <div id="foo_option">
+                    <div id="social">
+                        <a href="javascript: openLinkInBrowser('https://www.facebook.com/Prosperidad.Social')"> <img src="img/social/facebook.png"></a>         
+                        <a href="javascript: openLinkInBrowser('https://twitter.com/dpscolombia')"> <img src="img/social/twitter.png"></a>
+                        <a href="javascript: openLinkInBrowser('https://www.youtube.com/channel/UCn8TWTrGkYH4SqGzmmGjbeQ')"> <img src="img/social/youtube.png"></a>
+                    </div>
+                </div>
+                <div id="foo_copyright"> Huellas de paz - Versión 1.0 </div>
+                <div id="foo_copyright"> Todos los derechos reservados - 2015 </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/navigation/classie.js"></script>
+    <script src="js/navigation/sidebarEffects.js"></script>
+
+</body>
+</html>

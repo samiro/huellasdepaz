@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="es" ng-app="incluapp">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Entérate </title>
+    <link rel="stylesheet" href="style.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="css/ale.css" type="text/css" media="screen">
+    <link href='http://fonts.googleapis.com/css?family=Cabin' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300'
+        rel='stylesheet' type='text/css'>
+    
+    <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="js/transit.js"></script>
+    <script type="text/javascript" src="js/custom.js"></script>
+    <!-- GALLERY START -->
+    <script type="text/javascript" src="lib/klass.min.js"></script>
+    <script type="text/javascript" src="lib/code.photoswipe-3.0.5.min.js"></script>
+    <script type="text/javascript" src="js/gallery.js"></script>
+    <!-- NAVIGATION START -->
+    <script src="js/navigation/modernizr.custom.js"></script>
+    <!-- COUNTDOWN START -->
+    <script type="text/javascript" src="js/jquery.countdown.js"></script>
+    <!-- JQUERY PLUGINS -->
+    <script type="text/javascript" src="js/jquery.mixitup.min.js"></script>
+    <script type="text/javascript" src="js/jquery.easing.min.js"></script>
+    <!-- SLIDER START -->
+    <script src="js/responsiveslides.min.js"></script>
+    <script type="text/javascript">        $(function () { $(".rslides").responsiveSlides(); }); </script>
+    <!-- ANGULAR -->
+    <script src="js/libs/angular.min.js"></script>
+    <script src="js/libs/angular-route.min.js"></script>
+    <script src="js/libs/angular-sanitize.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/app_main.js"></script>
+    <script src="cordova.js"></script>
+</head>
+<body>
+<div ng-include="'templates/__nointernet.html'"></div>
+
+    <div id="st-container" class="st-container">
+        <nav class="st-menu st-effect-9" id="menu-9">
+            <div class="logo"><img src="img/logo_pies_txt_oscuro.png" title="Huellas de Paz logo">
+            </div>
+            <div ng-include="'templates/__navegacion.html'">
+            </div>
+        </nav>
+        <div class="st-pusher">
+            <div class="st-content">
+                <div class="st-content-inner">
+                    <div id="page-content">
+                        <div id="page-inside">
+                            <div id="header-content">
+                                <div id="header-content-left" class="clearfix">
+                                    <div id="navigation_content">
+                                        <div id="st-trigger-effects" class="column">
+                                            <button data-effect="st-effect-9" id="i-nav" title="Menú">
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="header-content-mid" class="clearfix">
+                                    <div class="logo">
+                                    <img src="img/logo_pies_txt_oscuro.png">
+                                    </div>
+                                </div>
+                                <div id="header-info">
+                                    <h2>
+                                        ENTÉRATE A TRAVÉS DE TWITTER</h2>
+                                </div>
+                            </div>
+                            <div class="timeline">
+                                <a class="twitter-timeline" href="https://twitter.com/search?q=%23huellasdepaz%20OR%20%23UnNuevoPa%C3%ADs%20from%3ADPSColombia" data-widget-id="585999062459113472">Cargando...<br>tweets sobre #huellasdepaz #UnNuevoPaís por DPSColombia</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clr">
+            </div>
+            <div ng-include="'templates/__footer.html'">
+            </div>
+        </div>
+        <script src="js/navigation/classie.js"></script>
+        <script src="js/navigation/sidebarEffects.js"></script>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</body>
+</html>

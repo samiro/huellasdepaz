@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="es" ng-app="incluapp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Inicio</title>
+    <link rel="stylesheet" href="style.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
+    <link href='http://fonts.googleapis.com/css?family=Cabin' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
+
+    <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="js/transit.js"></script>
+    <script type="text/javascript" src="js/custom.js"></script>
+
+    <!-- GALLERY START -->
+    <script type="text/javascript" src="lib/klass.min.js"></script>
+   <!-- <script type="text/javascript" src="lib/code.photoswipe-3.0.5.min.js"></script>-->
+    <script type="text/javascript" src="js/gallery.js"></script>
+
+    <!-- NAVIGATION START --> 
+    <script src="js/navigation/modernizr.custom.js"></script>
+
+    <!-- JQUERY PLUGINS -->
+    <script type="text/javascript" src="js/jquery.mixitup.min.js"></script>
+    <script type="text/javascript" src="js/jquery.easing.min.js"></script>	
+
+    <!-- SLIDER START -->
+    <script src="js/responsiveslides.min.js"></script>
+    <script type="text/javascript"> $(function() { $(".rslides").responsiveSlides(); }); </script>
+
+    <!-- ANGULAR -->
+    <script src="js/libs/angular.min.js"></script>
+    <script src="js/libs/angular-route.min.js"></script>
+    <script src="js/libs/angular-sanitize.min.js"></script>
+
+    <script src="js/app.js"></script>
+    <script src="js/app_main.js"></script>
+    <script src="js/inicio.js"></script>
+    <script src="cordova.js"></script>
+
+    <style>
+    #header-content{
+        margin-bottom: 0px;
+    }
+    </style>
+
+</head>
+<body class="page-home" ng-controller="HomeCtrl"> 
+    <div ng-include="'templates/__nointernet.html'"></div>
+
+  <div id="st-container" class="st-container">
+    <nav class="st-menu st-effect-9" id="menu-9">
+        <div class="logo">
+            <img src="img/logo_pies_txt_oscuro.png" title="Huellas de Paz logo">
+        </div> 
+        <div ng-include="'templates/__navegacion.html'"></div>
+    </nav>			
+
+    <div class="st-pusher">
+      <div class="st-content">
+         <div class="st-content-inner">
+
+            <div id="page-content">
+             <div id="page-inside">  
+
+
+                <div id="header-content">
+
+                    <div id="header-content-left" class="clearfix">
+                        <div id="navigation_content">
+                            <div id="st-trigger-effects" class="column">
+                                <button data-effect="st-effect-9" id="i-nav" title="Menú"></button>
+                            </div> 
+                        </div>
+                    </div>
+                    <div id="header-content-mid" class="clearfix">
+                        <div class="logo" title="Huellas de Paz logo">
+                            <img src="img/logo_pies_txt_blanco.png" title="Huellas de Paz logo">
+                        </div>
+                    </div>
+                    <div id="header-content-right" class="clearfix">
+                        <a href="__proyectos.html" title="Proyectos">
+                            <div id="i-logreg"></div>
+                        </a>
+                    </div>
+                    <div id="header-info"></div>
+                </div>
+
+               <div class="clearfix home-slide">
+                <ul class="rslides" id="slides-home">
+                    <li ng-repeat="proyecto in proyectos">
+                        <a ng-click="projectClick(proyecto)">
+                            <img ng-hide="proyecto.Imagen.trim()==''" ng-src="{{proyecto.Imagen}}" alt="{{proyecto.Titulo}}">
+                            <img ng-show="proyecto.Imagen.trim()==''" src="img/nodisponible.jpg" alt="{{proyecto.Titulo}}" />
+                            <div class="bg"></div>
+                            <label>{{proyecto.Titulo}}</label>
+                        </a>
+                    </li>
+                </ul>
+               </div>
+
+               <div id="service-style2" class="clearfix">
+                    <a href="__experiencias.html" class="block-service-style clearfix">
+                        <div class="ss2-cleft-left"> <div class="serv-cclr-img img-left" id="i-quality"></div> </div>
+                        <div class="ss2-cleft-right">
+                            <div class="arrow_box_cleft">
+                                <h1>Experiencias</h1>
+                                <p>Conoce nuestras historias de <b>paz</b>.</p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="__proyectos.html" class="block-service-style clearfix">
+                        <div class="ss2-cright-right"> <div class="serv-cclr-img img-right" id="i-quality"></div> </div>
+                        <div class="ss2-cright-left">
+                            <div class="arrow_box_cright">
+                                <h1>Proyectos</h1>
+                                <p>Únete a esta iniciativa y apoya a los <b>emprendimientos de paz</b>.</p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="__enterate.html" class="block-service-style clearfix">
+                        <div class="ss2-cleft-left"> <div class="serv-cclr-img img-left" id="i-quality"></div> </div>
+                        <div class="ss2-cleft-right">
+                            <div class="arrow_box_cleft">
+                                <h1>Entérate</h1>
+                                <p>Divulga y comparte en tus redes, generemos juntos una base de conocimiento sólida de paz.</p>
+                            </div>
+                        </div>
+                    </a>
+                    <div ng-include="'templates/__footer.html'"></div>
+
+                </div>
+
+
+            </div>
+           </div>
+        </div>
+    </div>
+    <div class="clr"></div>
+
+
+</div>
+
+
+
+<script src="js/navigation/classie.js"></script>
+<script src="js/navigation/sidebarEffects.js"></script>
+<script>
+    app.initialize()
+
+    $(document).ready(function () {
+        //configurar_db();
+        //console.log("123");
+        verificacionInicio();
+    });
+</script> 
+
+</body>
+</html>

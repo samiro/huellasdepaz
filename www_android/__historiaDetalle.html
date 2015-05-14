@@ -1,0 +1,161 @@
+﻿<!doctype html>
+<html lang="es" ng-app="incluapp">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Historia de paz - Detalle</title>
+    <link rel="stylesheet" href="style.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="css/ale.css" type="text/css" media="screen">
+    <link href='http://fonts.googleapis.com/css?family=Cabin' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300'
+        rel='stylesheet' type='text/css'>
+    
+    <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="js/transit.js"></script>
+    <script type="text/javascript" src="js/custom.js"></script>
+    
+    <!-- GALLERY START -->
+    <script type="text/javascript" src="lib/klass.min.js"></script>
+    <script type="text/javascript" src="lib/code.photoswipe-3.0.5.min.js"></script>
+    <script type="text/javascript" src="js/gallery.js"></script>
+
+    <!-- NAVIGATION START -->
+    <script src="js/navigation/modernizr.custom.js"></script>
+
+    <!-- COUNTDOWN START -->
+    <script type="text/javascript" src="js/jquery.countdown.js"></script>
+
+    <!-- JQUERY PLUGINS -->
+    <script type="text/javascript" src="js/jquery.mixitup.min.js"></script>
+    <script type="text/javascript" src="js/jquery.easing.min.js"></script>
+
+    <!-- SLIDER START -->
+    <script src="js/responsiveslides.min.js"></script>
+    <script type="text/javascript">        $(function () { $(".rslides").responsiveSlides(); }); </script>
+
+    <!-- ANGULAR -->
+    <script src="js/libs/angular.min.js"></script>
+    <script src="js/libs/angular-route.min.js"></script>
+    <script src="js/libs/angular-sanitize.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/app_main.js"></script>
+    <script src="cordova.js"></script>
+</head>
+<body ng-controller="HistoriaDetalleCtrl">
+<div ng-include="'templates/__nointernet.html'"></div>
+
+    <div id="st-container" class="st-container">
+        <nav class="st-menu st-effect-9" id="menu-9">
+            <div class="logo"><img src="img/logo_pies_txt_oscuro.png" title="Huellas de Paz logo">
+            </div>
+            <div ng-include="'templates/__navegacion.html'">
+            </div>
+        </nav>
+        <div class="st-pusher">
+            <div class="st-content">
+                <div class="st-content-inner">
+                    <div id="page-content">
+                        <div id="page-inside">
+                            <div id="header-content" class="divEncabezado">
+                                <div class="divOpacoEncab">
+                                </div>
+                                <div class="imgPry imgEncabezado">
+
+                                    <img ng-hide="historia.Imagen == '' || historia.Imagen == null" ng-src="{{historia.Imagen}}" alt="{{historia.Titulo}}" />
+
+                                    <img ng-show="historia.Imagen == '' || historia.Imagen == null" ng-src="img/nodisponible.jpg" alt="{{historia.Titulo}}"/>
+                                </div>
+                                <div id="header-content-left" class="clearfix">
+                                    <div id="navigation_content">
+                                        <div id="st-trigger-effects" class="column">
+                                            <button data-effect="st-effect-9" id="i-nav" title="Menú">
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="heart" ng-click="shareTwitter(historia)"  title="Compartir en Twitter">
+                                        <div class="heart-content">
+                                            <img src="img/heart.png">
+                                            <span>{{historia.Likes}}</span>
+                                        </div>
+                                    </div>
+                                <h1 class="h1Encabezado">
+                                    {{historia.Titulo}}
+                                </h1>
+
+                            </div>
+                            <div class="blog-post">
+                                <p>
+                                    {{historia.Historia}}
+                                </p>
+                                <div class="divInfoGeneral">
+                                    <strong>Región: </strong>{{historia.Region}}, {{historia.Ciudad.MyCiudad}}<br />
+                                     <strong>Temática: </strong>{{historia.Tematica}}<br />
+                                
+                                    <div ng-show="historia.Contacto.IdContacto != null && historia.Contacto.IdContacto != '' && historia.Contacto.IdContacto > 0 ">
+                                        <strong>Contacto: </strong>
+                                        <ul class="ulContacto">
+
+                                            <li>{{historia.Contacto.Nombre}}</li>
+                                            <li>{{historia.Contacto.URL}}</li>
+                                            <li>{{historia.Contacto.Email}}</li>
+                                            <li>{{historia.Contacto.Direccion}}</li>
+                                            <li>{{historia.Contacto.Telefono}}</li>
+                                        </ul>
+                                    </div>
+                                    <div ng-show="historia.Contacto.Email != null && historia.Contacto.Email != ''" class="posted-comment divAportar">
+                                        <a class="bntAportar" href="mailto: {{historia.Contacto.Email}}">Quiero aportar</a>
+                                    </div>
+                                </div>
+                                <div class="blog-post-information">
+                                    <h1>
+                                        Comentarios
+                                    </h1>
+                                    <div class="comment clearfix" ng-repeat="comentario in historia.Comentario">
+                                        <div class="quote">
+                                            <div class="i-pos">
+                                                <i>
+                                                    <div class="qttp">
+                                                    </div>
+                                                    {{comentario.Comentario}}
+                                                    <div class="qbtp">
+                                                    </div>
+                                                </i>
+                                            </div>
+                                        </div>
+                                        <p class="pForo">
+                                            {{comentario.Usuario}}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="posted-comment divAportar">
+                                    <div ng-hide="showFormComentarios" class="bntAportar" ng-click="toggleFormComentarios()" href="javascript:void(0)">Escribir comentario</div>
+                                    <div ng-show="showFormComentarios" class="form-comment">
+                                        <div class="contactform" method="post">
+                                            <label for="name">Nombre:</label>
+                                            <div>
+                                                <input ng-model="comment_name" type="text" id="name" name="name" value="{{comment_name}}">
+                                            </div>
+                                            <label for="comment">Comentario:</label>
+                                            <div>
+                                                <textarea ng-model="comment_message" id="comment" name="comment" rows="5" cols="20">{{comment_name}}</textarea>
+                                            </div>
+                                            <Button class="submitButton" ng-click="enviarComentario()">Comentar</Button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clr">
+            </div>
+            <div ng-include="'templates/__footer.html'">
+            </div>
+        </div>
+        <script src="js/navigation/classie.js"></script>
+        <script src="js/navigation/sidebarEffects.js"></script>
+</body>
+</html>
